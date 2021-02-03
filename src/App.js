@@ -5,7 +5,7 @@ import FormBuilder from './components/FormBuilder/FormBuilder';
 
 const App = () => {
 	return (
-		<div class='container my-5'>
+		<div className='container my-5'>
 			<Header />
 			<Route path='/'>
 				<FormBuilder />

@@ -1,80 +1,82 @@
 import { useState } from 'react';
 
-const options = [
-	{
-		label: 'Short Answer',
-		value: 'text',
-	},
-	{
-		label: 'Multiple Choice',
-		value: 'radio',
-	},
-	{
-		label: 'Checkboxes',
-		value: 'checkbox',
-	},
-	{
-		label: 'Paragraph',
-		value: 'textarea',
-	},
-	{
-		label: 'Date',
-		value: 'date',
-	},
-	{
-		label: 'Time',
-		value: 'time',
-	},
-	{
-		label: 'Date/Time',
-		value: 'date-time',
-	},
-];
+// const options = [
+// 	{
+// 		label: 'Short Answer',
+// 		value: 'text',
+// 	},
+// 	{
+// 		label: 'Multiple Choice',
+// 		value: 'radio',
+// 	},
+// 	{
+// 		label: 'Checkboxes',
+// 		value: 'checkbox',
+// 	},
+// 	{
+// 		label: 'Paragraph',
+// 		value: 'textarea',
+// 	},
+// 	{
+// 		label: 'Date',
+// 		value: 'date',
+// 	},
+// 	{
+// 		label: 'Time',
+// 		value: 'time',
+// 	},
+// 	{
+// 		label: 'Date/Time',
+// 		value: 'date-time',
+// 	},
+// ];
 
 const CustomForm = () => {
-	const formFields = [];
-	const [selected, setSelected] = useState(options[0]);
-	const renderedOptions = options.map((option) => {
-		return <option value={option.value}>{option.label}</option>;
-	});
+	const [displayFields, setDisplayFields] = useState(true);
 
-	const handleClick = (e) => {
+	const addTextField = (e) => {
 		e.preventDefault();
-		let inputField;
-		switch (selected) {
-			case 'text':
-				break;
-			case 'textarea':
-				break;
-			case 'radio':
-				break;
-			case 'checkbox':
-				break;
-			case 'dropdown':
-				break;
-			case 'date':
-				break;
-			case 'time':
-				break;
-			case 'date-time':
-				break;
-			default:
-				break;
-		}
+		setDisplayFields(!displayFields);
 	};
+	// const addParagraphField = (e) => {
+	// 	e.preventDefault();
+	// };
+	// const addMultipleChoiceField = (e) => {
+	// 	e.preventDefault();
+	// };
+	// const addCheckBoxField = (e) => {
+	// 	e.preventDefault();
+	// };
+	// const addDateTimeField = (e) => {
+	// 	e.preventDefault();
+	// };
 
 	return (
 		<>
-			<select
-				class='form-select'
-				value={selected}
-				onChange={(e) => setSelected(e.target.value)}
-				aria-label='Default select'>
-				{renderedOptions}
-			</select>
-			<button onClick={(e) => handleClick(e)} className='btn btn-primary'>
-				Add Field
+			<button onClick={(e) => addTextField(e)} className='btn btn-primary'>
+				Add Short Answer
 			</button>
+			{displayFields}
+			{/* <button
+				onClick={(e) => addParagraphField(e)}
+				className='btn btn-primary ml-1'>
+				Add Paragraph
+			</button>
+			<button
+				onClick={(e) => addMultipleChoiceField(e)}
+				className='btn btn-primary ml-1'>
+				Add Multiple Choice
+			</button>
+			<button
+				onClick={(e) => addCheckBoxField(e)}
+				className='btn btn-primary ml-1'>
+				Add CheckBoxes
+			</button>
+			<button
+				onClick={(e) => addDateTimeField(e)}
+				className='btn btn-primary ml-1'>
+				Add Date/Time
+			</button> */}
 		</>
 	);
 };

@@ -8,23 +8,23 @@ const FormBuilder = () => {
 
 	return (
 		<form className='m-3'>
-			<div class='mb-3'>
+			<div className='mb-3'>
 				<input
 					type='text'
-					class='form-control'
+					className='form-control'
 					id='form-title'
-					placeHolder='Form Title'
+					placeholder='Form Title'
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
 					aria-describedby='form-title'
 				/>
 			</div>
-			<div class='mb-3'>
+			<div className='mb-3'>
 				<textarea
 					type='text'
-					class='form-control'
+					className='form-control'
 					id='form-title'
-					placeHolder='Form Description (Optional)'
+					placeholder='Form Description (Optional)'
 					value={desc}
 					onChange={(e) => setDesc(e.target.value)}
 					aria-describedby='form-description'
