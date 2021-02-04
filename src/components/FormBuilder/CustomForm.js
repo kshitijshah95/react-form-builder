@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import TextBuilder from './Builders/TextBuilder';
-import ParaBuilder from './Builders/ParaBuilder';
-import CheckboxBuilder from './Builders/CheckboxBuilder';
-import MultipleChoiceBuilder from './Builders/MultipleChoiceBuilder';
-import DateTimeBuilder from './Builders/DateTimeBuilder';
-import DropdownBuilder from './Builders/DropdownBuilder';
+import TextBuilder from './builders/TextBuilder';
+import ParaBuilder from './builders/ParaBuilder';
+import CheckboxBuilder from './builders/CheckboxBuilder';
+import MultipleChoiceBuilder from './builders/MultipleChoiceBuilder';
+import DateTimeBuilder from './builders/DateTimeBuilder';
+import DropdownBuilder from './builders/DropdownBuilder';
 
 const CustomForm = () => {
 	const [fields, setFields] = useState([{ id: 0 }]);
@@ -22,7 +22,7 @@ const CustomForm = () => {
 			return <CheckboxBuilder field={field} key={field.id} />;
 		else if (field.type === 'date-time')
 			return <DateTimeBuilder field={field} key={field.id} />;
-		return <></>;
+		else return <span key='0'></span>;
 	});
 
 	const addField = (e, type) => {
@@ -32,6 +32,7 @@ const CustomForm = () => {
 			...fields,
 			{
 				id: id,
+				question: `Question ${id}`,
 				type: type,
 				required: false,
 				options: [
@@ -45,35 +46,39 @@ const CustomForm = () => {
 
 	return (
 		<>
-			<button onClick={(e) => addField(e, 'text')} className='btn btn-primary'>
-				Add Short Answer
-			</button>
-			<button
-				onClick={(e) => addField(e, 'para')}
-				className='btn btn-primary ml-1'>
-				Add Paragraph
-			</button>
-			<button
-				onClick={(e) => addField(e, 'multiple-choice')}
-				className='btn btn-primary ml-1'>
-				Add Multiple Choice
-			</button>
-			<button
-				onClick={(e) => addField(e, 'dropdown')}
-				className='btn btn-primary ml-1'>
-				Add Dropdown
-			</button>
-			<button
-				onClick={(e) => addField(e, 'checkbox')}
-				className='btn btn-primary ml-1'>
-				Add CheckBoxes
-			</button>
-			<button
-				onClick={(e) => addField(e, 'date-time')}
-				className='btn btn-primary ml-1'>
-				Add Date/Time
-			</button>
 			{renderedFields}
+			<div className='my-4'>
+				<button
+					onClick={(e) => addField(e, 'text')}
+					className='btn btn-primary'>
+					Add Short Answer
+				</button>
+				<button
+					onClick={(e) => addField(e, 'para')}
+					className='btn btn-primary ml-1'>
+					Add Paragraph
+				</button>
+				<button
+					onClick={(e) => addField(e, 'multiple-choice')}
+					className='btn btn-primary ml-1'>
+					Add Multiple Choice
+				</button>
+				<button
+					onClick={(e) => addField(e, 'dropdown')}
+					className='btn btn-primary ml-1'>
+					Add Dropdown
+				</button>
+				<button
+					onClick={(e) => addField(e, 'checkbox')}
+					className='btn btn-primary ml-1'>
+					Add CheckBoxes
+				</button>
+				<button
+					onClick={(e) => addField(e, 'date-time')}
+					className='btn btn-primary ml-1'>
+					Add Date/Time
+				</button>
+			</div>
 		</>
 	);
 };
