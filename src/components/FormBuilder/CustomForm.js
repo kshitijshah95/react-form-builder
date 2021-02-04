@@ -1,82 +1,79 @@
 import { useState } from 'react';
-
-// const options = [
-// 	{
-// 		label: 'Short Answer',
-// 		value: 'text',
-// 	},
-// 	{
-// 		label: 'Multiple Choice',
-// 		value: 'radio',
-// 	},
-// 	{
-// 		label: 'Checkboxes',
-// 		value: 'checkbox',
-// 	},
-// 	{
-// 		label: 'Paragraph',
-// 		value: 'textarea',
-// 	},
-// 	{
-// 		label: 'Date',
-// 		value: 'date',
-// 	},
-// 	{
-// 		label: 'Time',
-// 		value: 'time',
-// 	},
-// 	{
-// 		label: 'Date/Time',
-// 		value: 'date-time',
-// 	},
-// ];
+import TextBuilder from './Builders/TextBuilder';
+import ParaBuilder from './Builders/ParaBuilder';
+import CheckboxBuilder from './Builders/CheckboxBuilder';
+import MultipleChoiceBuilder from './Builders/MultipleChoiceBuilder';
+import DateTimeBuilder from './Builders/DateTimeBuilder';
+import DropdownBuilder from './Builders/DropdownBuilder';
 
 const CustomForm = () => {
-	const [displayFields, setDisplayFields] = useState(true);
+	const [fields, setFields] = useState([{ id: 0 }]);
 
-	const addTextField = (e) => {
+	const renderedFields = fields.map((field) => {
+		if (field.type === 'text')
+			return <TextBuilder field={field} key={field.id} />;
+		else if (field.type === 'para')
+			return <ParaBuilder field={field} key={field.id} />;
+		else if (field.type === 'dropdown')
+			return <DropdownBuilder field={field} key={field.id} />;
+		else if (field.type === 'multiple-choice')
+			return <MultipleChoiceBuilder field={field} key={field.id} />;
+		else if (field.type === 'checkbox')
+			return <CheckboxBuilder field={field} key={field.id} />;
+		else if (field.type === 'date-time')
+			return <DateTimeBuilder field={field} key={field.id} />;
+		return <></>;
+	});
+
+	const addField = (e, type) => {
 		e.preventDefault();
-		setDisplayFields(!displayFields);
+		const id = fields[fields.length - 1].id + 1;
+		setFields([
+			...fields,
+			{
+				id: id,
+				type: type,
+				required: false,
+				options: [
+					{ label: 'Option 1', value: 'option1' },
+					{ label: 'Option 2', value: 'option2' },
+					{ label: 'Option 3', value: 'option3' },
+				],
+			},
+		]);
 	};
-	// const addParagraphField = (e) => {
-	// 	e.preventDefault();
-	// };
-	// const addMultipleChoiceField = (e) => {
-	// 	e.preventDefault();
-	// };
-	// const addCheckBoxField = (e) => {
-	// 	e.preventDefault();
-	// };
-	// const addDateTimeField = (e) => {
-	// 	e.preventDefault();
-	// };
 
 	return (
 		<>
-			<button onClick={(e) => addTextField(e)} className='btn btn-primary'>
+			<button onClick={(e) => addField(e, 'text')} className='btn btn-primary'>
 				Add Short Answer
 			</button>
-			{displayFields}
-			{/* <button
-				onClick={(e) => addParagraphField(e)}
+			<button
+				onClick={(e) => addField(e, 'para')}
 				className='btn btn-primary ml-1'>
 				Add Paragraph
 			</button>
 			<button
-				onClick={(e) => addMultipleChoiceField(e)}
+				onClick={(e) => addField(e, 'multiple-choice')}
 				className='btn btn-primary ml-1'>
 				Add Multiple Choice
 			</button>
 			<button
-				onClick={(e) => addCheckBoxField(e)}
+				onClick={(e) => addField(e, 'dropdown')}
+				className='btn btn-primary ml-1'>
+				Add Dropdown
+			</button>
+			<button
+				onClick={(e) => addField(e, 'checkbox')}
 				className='btn btn-primary ml-1'>
 				Add CheckBoxes
 			</button>
 			<button
-				onClick={(e) => addDateTimeField(e)}
+				onClick={(e) => addField(e, 'date-time')}
 				className='btn btn-primary ml-1'>
 				Add Date/Time
-			</button> */}
+			</button>
+			{renderedFields}
 		</>
 	);
 };

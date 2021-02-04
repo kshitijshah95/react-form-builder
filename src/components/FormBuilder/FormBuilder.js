@@ -1,6 +1,7 @@
 // Form Builder App Component
 import { useState } from 'react';
 import CustomForm from './CustomForm';
+import FormHeader from './FormHeader';
 
 const FormBuilder = () => {
 	const [title, setTitle] = useState('');
@@ -8,31 +9,13 @@ const FormBuilder = () => {
 
 	return (
 		<form className='m-3'>
-			<div className='mb-3'>
-				<input
-					type='text'
-					className='form-control'
-					id='form-title'
-					placeholder='Form Title'
-					value={title}
-					onChange={(e) => setTitle(e.target.value)}
-					aria-describedby='form-title'
-				/>
-			</div>
-			<div className='mb-3'>
-				<textarea
-					type='text'
-					className='form-control'
-					id='form-title'
-					placeholder='Form Description (Optional)'
-					value={desc}
-					onChange={(e) => setDesc(e.target.value)}
-					aria-describedby='form-description'
-				/>
-			</div>
+			<FormHeader
+				title={title}
+				onChangeTitle={setTitle}
+				desc={desc}
+				onChangeDesc={setDesc}
+			/>
 			<CustomForm />
-			{/* {title}
-			{desc} */}
 		</form>
 	);
 };
