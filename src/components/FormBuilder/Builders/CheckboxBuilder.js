@@ -26,6 +26,7 @@ const CheckboxBuilder = ({ field }) => {
 			</div>
 		);
 	});
+
 	return (
 		<div className='card card-body mt-3'>
 			<QuestionField question={field.question} />

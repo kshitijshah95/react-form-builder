@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { FieldControls, QuestionField } from '../helpers/HelperFunctions';
 
-const TextBuilder = ({ field }) => {
+const TextBuilder = ({ field, remove }) => {
+	const currValue = field.value || '';
+	const [inputValue, setInputValue] = useState(currValue);
 	return (
 		<div className='card card-body mt-3'>
 			<QuestionField question={field.question} />
@@ -9,8 +12,10 @@ const TextBuilder = ({ field }) => {
 				key={field.id}
 				id={field.id}
 				required={field.required}
+				value={inputValue}
+				onChange={(e) => setInputValue(e.target.value)}
 			/>
-			<FieldControls />
+			<FieldControls id={field.id} remove={remove} />
 		</div>
 	);
 };

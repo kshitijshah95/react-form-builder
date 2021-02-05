@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import TextBuilder from './builders/TextBuilder';
 import ParaBuilder from './builders/ParaBuilder';
 import CheckboxBuilder from './builders/CheckboxBuilder';
@@ -6,22 +5,56 @@ import MultipleChoiceBuilder from './builders/MultipleChoiceBuilder';
 import DateTimeBuilder from './builders/DateTimeBuilder';
 import DropdownBuilder from './builders/DropdownBuilder';
 
-const CustomForm = () => {
-	const [fields, setFields] = useState([{ id: 0 }]);
-
+const CustomForm = ({ fields, setFields }) => {
 	const renderedFields = fields.map((field) => {
 		if (field.type === 'text')
-			return <TextBuilder field={field} key={field.id} />;
+			return (
+				<TextBuilder
+					field={field}
+					key={field.id}
+					remove={(e) => removeField(e)}
+				/>
+			);
 		else if (field.type === 'para')
-			return <ParaBuilder field={field} key={field.id} />;
+			return (
+				<ParaBuilder
+					field={field}
+					key={field.id}
+					remove={(e) => removeField(e)}
+				/>
+			);
 		else if (field.type === 'dropdown')
-			return <DropdownBuilder field={field} key={field.id} />;
+			return (
+				<DropdownBuilder
+					field={field}
+					key={field.id}
+					remove={(e) => removeField(e)}
+				/>
+			);
 		else if (field.type === 'multiple-choice')
-			return <MultipleChoiceBuilder field={field} key={field.id} />;
+			return (
+				<MultipleChoiceBuilder
+					field={field}
+					key={field.id}
+					remove={(e) => removeField(e)}
+				/>
+			);
 		else if (field.type === 'checkbox')
-			return <CheckboxBuilder field={field} key={field.id} />;
+			return (
+				<CheckboxBuilder
+					field={field}
+					key={field.id}
+					remove={(e) => removeField(e)}
+				/>
+			);
 		else if (field.type === 'date-time')
-			return <DateTimeBuilder field={field} key={field.id} />;
+			return (
+				<DateTimeBuilder
+					field={field}
+					key={field.id}
+					remove={(e) => removeField(e)}
+				/>
+			);
 		else return <span key='0'></span>;
 	});
 
@@ -42,6 +75,13 @@ const CustomForm = () => {
 				],
 			},
 		]);
+	};
+
+	const removeField = (id) => {
+		const newState = fields.filter((field) => {
+			return field.id !== id;
+		});
+		setFields(newState);
 	};
 
 	return (

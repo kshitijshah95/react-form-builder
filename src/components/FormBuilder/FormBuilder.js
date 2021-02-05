@@ -3,7 +3,7 @@ import { useState } from 'react';
 import CustomForm from './CustomForm';
 import FormHeader from './FormHeader';
 
-const FormBuilder = () => {
+const FormBuilder = ({ fields, setFields }) => {
 	const [title, setTitle] = useState('');
 	const [desc, setDesc] = useState('');
 
@@ -15,7 +15,7 @@ const FormBuilder = () => {
 				desc={desc}
 				onChangeDesc={setDesc}
 			/>
-			<CustomForm />
+			<CustomForm fields={fields} setFields={setFields} />
 		</form>
 	);
 };
