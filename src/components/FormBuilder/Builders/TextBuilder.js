@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { FieldControls, QuestionField } from '../helpers/HelperFunctions';
+import { FieldControls, QuestionField } from '../Helpers/HelperFunctions';
 
-const TextBuilder = ({ field, remove, duplicate }) => {
+const TextBuilder = ({ field, remove, duplicate, required }) => {
 	const currValue = field.value || '';
 	const [inputValue, setInputValue] = useState(currValue);
 	return (
@@ -15,7 +15,12 @@ const TextBuilder = ({ field, remove, duplicate }) => {
 				value={inputValue}
 				onChange={(e) => setInputValue(e.target.value)}
 			/>
-			<FieldControls id={field.id} remove={remove} duplicate={duplicate} />
+			<FieldControls
+				id={field.id}
+				remove={remove}
+				duplicate={duplicate}
+				required={required}
+			/>
 		</div>
 	);
 };

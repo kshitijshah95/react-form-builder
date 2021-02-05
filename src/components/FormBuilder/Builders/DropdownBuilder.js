@@ -2,8 +2,8 @@ import {
 	AddOptions,
 	FieldControls,
 	QuestionField,
-} from '../helpers/HelperFunctions';
-const DropdownBuilder = ({ field, remove, duplicate }) => {
+} from '../Helpers/HelperFunctions';
+const DropdownBuilder = ({ field, remove, duplicate, required }) => {
 	const renderedOptions = field.options.map((option, i) => {
 		return (
 			<div key={i} className='dropdown-item'>
@@ -22,7 +22,8 @@ const DropdownBuilder = ({ field, remove, duplicate }) => {
 						id={field.id}
 						data-toggle='dropdown'
 						aria-haspopup='true'
-						aria-expanded='false'>
+						aria-expanded='false'
+						required={field.required}>
 						Dropdown button
 					</button>
 					<div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
@@ -31,7 +32,12 @@ const DropdownBuilder = ({ field, remove, duplicate }) => {
 				</div>
 			</div>
 			<AddOptions />
-			<FieldControls id={field.id} remove={remove} duplicate={duplicate} />
+			<FieldControls
+				id={field.id}
+				remove={remove}
+				duplicate={duplicate}
+				required={required}
+			/>
 		</div>
 	);
 };

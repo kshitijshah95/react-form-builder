@@ -1,9 +1,9 @@
-import TextBuilder from './builders/TextBuilder';
-import ParaBuilder from './builders/ParaBuilder';
-import CheckboxBuilder from './builders/CheckboxBuilder';
-import MultipleChoiceBuilder from './builders/MultipleChoiceBuilder';
-import DateTimeBuilder from './builders/DateTimeBuilder';
-import DropdownBuilder from './builders/DropdownBuilder';
+import TextBuilder from './Builders/TextBuilder';
+import ParaBuilder from './Builders/ParaBuilder';
+import CheckboxBuilder from './Builders/CheckboxBuilder';
+import MultipleChoiceBuilder from './Builders/MultipleChoiceBuilder';
+import DateTimeBuilder from './Builders/DateTimeBuilder';
+import DropdownBuilder from './Builders/DropdownBuilder';
 
 const CustomForm = ({ fields, setFields }) => {
 	const renderedFields = fields.map((field) => {
@@ -14,6 +14,7 @@ const CustomForm = ({ fields, setFields }) => {
 					key={field.id}
 					remove={(e) => removeField(e)}
 					duplicate={(e) => duplicateField(e)}
+					required={(e) => requiredField(e)}
 				/>
 			);
 		else if (field.type === 'para')
@@ -23,6 +24,7 @@ const CustomForm = ({ fields, setFields }) => {
 					key={field.id}
 					remove={(e) => removeField(e)}
 					duplicate={(e) => duplicateField(e)}
+					required={(e) => requiredField(e)}
 				/>
 			);
 		else if (field.type === 'dropdown')
@@ -32,6 +34,7 @@ const CustomForm = ({ fields, setFields }) => {
 					key={field.id}
 					remove={(e) => removeField(e)}
 					duplicate={(e) => duplicateField(e)}
+					required={(e) => requiredField(e)}
 				/>
 			);
 		else if (field.type === 'multiple-choice')
@@ -41,6 +44,7 @@ const CustomForm = ({ fields, setFields }) => {
 					key={field.id}
 					remove={(e) => removeField(e)}
 					duplicate={(e) => duplicateField(e)}
+					required={(e) => requiredField(e)}
 				/>
 			);
 		else if (field.type === 'checkbox')
@@ -50,6 +54,7 @@ const CustomForm = ({ fields, setFields }) => {
 					key={field.id}
 					remove={(e) => removeField(e)}
 					duplicate={(e) => duplicateField(e)}
+					required={(e) => requiredField(e)}
 				/>
 			);
 		else if (field.type === 'date-time')
@@ -59,6 +64,7 @@ const CustomForm = ({ fields, setFields }) => {
 					key={field.id}
 					remove={(e) => removeField(e)}
 					duplicate={(e) => duplicateField(e)}
+					required={(e) => requiredField(e)}
 				/>
 			);
 		else return <span key='0'></span>;
@@ -91,7 +97,6 @@ const CustomForm = ({ fields, setFields }) => {
 	};
 
 	const duplicateField = (oldId) => {
-		console.log('Duplicated!');
 		const id = fields[fields.length - 1].id + 1;
 		const record = fields.filter((field) => {
 			return field.id === oldId;
@@ -103,6 +108,19 @@ const CustomForm = ({ fields, setFields }) => {
 				id: id,
 			},
 		]);
+	};
+
+	const requiredField = (id) => {
+		console.log('Required!');
+		const records = fields.map((field) => {
+			if (field.id === id)
+				return {
+					...field,
+					required: !field.required,
+				};
+			return field;
+		});
+		setFields([...records]);
 	};
 
 	return (

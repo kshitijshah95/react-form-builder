@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import Route from './components/Route';
-import Header from './components/Header';
+import Route from './components/Routing/Route';
+import Header from './components/Routing/Header';
 import FormBuilder from './components/FormBuilder/FormBuilder';
+import RenderedForm from './components/Preview/RenderedForm';
 
 const App = () => {
 	const [fields, setFields] = useState([{ id: 0 }]);
@@ -11,7 +12,9 @@ const App = () => {
 			<Route path='/'>
 				<FormBuilder fields={fields} setFields={setFields} />
 			</Route>
-			<Route path='/preview'>Preview App</Route>
+			<Route path='/preview'>
+				<RenderedForm fields={fields} setFields={setFields}/>
+			</Route>
 		</div>
 	);
 };

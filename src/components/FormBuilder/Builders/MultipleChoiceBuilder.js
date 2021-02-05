@@ -2,14 +2,14 @@ import {
 	AddOptions,
 	FieldControls,
 	QuestionField,
-} from '../helpers/HelperFunctions';
+} from '../Helpers/HelperFunctions';
 
-const MultipleChoiceBuilder = ({ field, remove, duplicate }) => {
+const MultipleChoiceBuilder = ({ field, remove, duplicate, required }) => {
 	const renderedOptions = field.options.map((option, i) => {
 		return (
-			<div class='input-group mb-1' key={i}>
-				<div class='input-group-prepend'>
-					<div class='input-group-text'>
+			<div className='input-group mb-1' key={i}>
+				<div className='input-group-prepend'>
+					<div className='input-group-text'>
 						<input
 							name={field.id}
 							type='checkbox'
@@ -20,7 +20,7 @@ const MultipleChoiceBuilder = ({ field, remove, duplicate }) => {
 				</div>
 				<input
 					type='text'
-					class='form-control'
+					className='form-control'
 					aria-label='Text input with checkbox'
 					value={option.value}
 				/>
@@ -32,7 +32,12 @@ const MultipleChoiceBuilder = ({ field, remove, duplicate }) => {
 			<QuestionField question={field.question} />
 			{renderedOptions}
 			<AddOptions />
-			<FieldControls id={field.id} remove={remove} duplicate={duplicate} />
+			<FieldControls
+				id={field.id}
+				remove={remove}
+				duplicate={duplicate}
+				required={required}
+			/>
 		</div>
 	);
 };

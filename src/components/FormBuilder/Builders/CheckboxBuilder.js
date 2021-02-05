@@ -2,9 +2,9 @@ import {
 	AddOptions,
 	FieldControls,
 	QuestionField,
-} from '../helpers/HelperFunctions';
+} from '../Helpers/HelperFunctions';
 
-const CheckboxBuilder = ({ field, remove, duplicate }) => {
+const CheckboxBuilder = ({ field, remove, duplicate, required }) => {
 	const renderedOptions = field.options.map((option, i) => {
 		return (
 			<div className='input-group mb-1' key={i}>
@@ -32,7 +32,12 @@ const CheckboxBuilder = ({ field, remove, duplicate }) => {
 			<QuestionField question={field.question} />
 			{renderedOptions}
 			<AddOptions />
-			<FieldControls id={field.id} remove={remove} duplicate={duplicate} />
+			<FieldControls
+				id={field.id}
+				remove={remove}
+				duplicate={duplicate}
+				required={required}
+			/>
 		</div>
 	);
 };
