@@ -1,6 +1,6 @@
 import { FieldControls, QuestionField } from '../helpers/HelperFunctions';
 
-const ParaBuilder = ({ field }) => {
+const ParaBuilder = ({ field, remove, duplicate }) => {
 	return (
 		<div className='card card-body mt-3'>
 			<QuestionField question={field.question} />
@@ -10,7 +10,7 @@ const ParaBuilder = ({ field }) => {
 				id={field.id}
 				required={field.required}
 			/>
-			<FieldControls />
+			<FieldControls id={field.id} remove={remove} duplicate={duplicate} />
 		</div>
 	);
 };

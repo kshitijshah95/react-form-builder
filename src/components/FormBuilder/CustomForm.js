@@ -13,6 +13,7 @@ const CustomForm = ({ fields, setFields }) => {
 					field={field}
 					key={field.id}
 					remove={(e) => removeField(e)}
+					duplicate={(e) => duplicateField(e)}
 				/>
 			);
 		else if (field.type === 'para')
@@ -21,6 +22,7 @@ const CustomForm = ({ fields, setFields }) => {
 					field={field}
 					key={field.id}
 					remove={(e) => removeField(e)}
+					duplicate={(e) => duplicateField(e)}
 				/>
 			);
 		else if (field.type === 'dropdown')
@@ -29,6 +31,7 @@ const CustomForm = ({ fields, setFields }) => {
 					field={field}
 					key={field.id}
 					remove={(e) => removeField(e)}
+					duplicate={(e) => duplicateField(e)}
 				/>
 			);
 		else if (field.type === 'multiple-choice')
@@ -37,6 +40,7 @@ const CustomForm = ({ fields, setFields }) => {
 					field={field}
 					key={field.id}
 					remove={(e) => removeField(e)}
+					duplicate={(e) => duplicateField(e)}
 				/>
 			);
 		else if (field.type === 'checkbox')
@@ -45,6 +49,7 @@ const CustomForm = ({ fields, setFields }) => {
 					field={field}
 					key={field.id}
 					remove={(e) => removeField(e)}
+					duplicate={(e) => duplicateField(e)}
 				/>
 			);
 		else if (field.type === 'date-time')
@@ -53,6 +58,7 @@ const CustomForm = ({ fields, setFields }) => {
 					field={field}
 					key={field.id}
 					remove={(e) => removeField(e)}
+					duplicate={(e) => duplicateField(e)}
 				/>
 			);
 		else return <span key='0'></span>;
@@ -82,6 +88,21 @@ const CustomForm = ({ fields, setFields }) => {
 			return field.id !== id;
 		});
 		setFields(newState);
+	};
+
+	const duplicateField = (oldId) => {
+		console.log('Duplicated!');
+		const id = fields[fields.length - 1].id + 1;
+		const record = fields.filter((field) => {
+			return field.id === oldId;
+		});
+		setFields([
+			...fields,
+			{
+				...record[0],
+				id: id,
+			},
+		]);
 	};
 
 	return (

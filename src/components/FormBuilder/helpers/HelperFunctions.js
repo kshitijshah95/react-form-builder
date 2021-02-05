@@ -1,11 +1,19 @@
-const FieldControls = ({ id, remove }) => {
+const FieldControls = ({ id, remove, duplicate }) => {
 	const removeThis = (e) => {
 		e.preventDefault();
 		remove(id);
 	};
+
+	const duplicateThis = (e) => {
+		e.preventDefault();
+		duplicate(id);
+	};
+
 	return (
 		<div className='mt-3'>
-			<button className='btn btn-primary m-1'>Duplicate</button>
+			<button onClick={(e) => duplicateThis(e)} className='btn btn-primary m-1'>
+				Duplicate
+			</button>
 			<button onClick={(e) => removeThis(e)} className='btn btn-primary m-1'>
 				Remove
 			</button>

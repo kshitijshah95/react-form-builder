@@ -3,7 +3,7 @@ import {
 	FieldControls,
 	QuestionField,
 } from '../helpers/HelperFunctions';
-const DropdownBuilder = ({ field }) => {
+const DropdownBuilder = ({ field, remove, duplicate }) => {
 	const renderedOptions = field.options.map((option, i) => {
 		return (
 			<div key={i} className='dropdown-item'>
@@ -31,7 +31,7 @@ const DropdownBuilder = ({ field }) => {
 				</div>
 			</div>
 			<AddOptions />
-			<FieldControls />
+			<FieldControls id={field.id} remove={remove} duplicate={duplicate} />
 		</div>
 	);
 };
