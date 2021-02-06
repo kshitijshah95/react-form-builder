@@ -11,6 +11,7 @@ const CustomForm = ({ fields, setFields }) => {
 			return (
 				<TextBuilder
 					field={field}
+					onChangeField={(e) => updateField(e)}
 					key={field.id}
 					remove={(e) => removeField(e)}
 					duplicate={(e) => duplicateField(e)}
@@ -77,7 +78,7 @@ const CustomForm = ({ fields, setFields }) => {
 			...fields,
 			{
 				id: id,
-				question: `Question ${id}`,
+				question: ``,
 				type: type,
 				required: false,
 				options: [
@@ -111,7 +112,6 @@ const CustomForm = ({ fields, setFields }) => {
 	};
 
 	const requiredField = (id) => {
-		console.log('Required!');
 		const records = fields.map((field) => {
 			if (field.id === id)
 				return {
@@ -121,6 +121,18 @@ const CustomForm = ({ fields, setFields }) => {
 			return field;
 		});
 		setFields([...records]);
+	};
+
+	const updateField = (newFieldValue) => {
+		let records = fields.map((field) => {
+			if (field.id === newFieldValue.id) {
+				console.log({ ...newFieldValue });
+				return { ...newFieldValue };
+			}
+			return field;
+		});
+		setFields(records);
+		console.log(fields);
 	};
 
 	return (

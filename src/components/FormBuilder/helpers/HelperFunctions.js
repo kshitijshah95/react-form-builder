@@ -37,8 +37,16 @@ const AddOptions = () => {
 	);
 };
 
-const QuestionField = ({ question }) => {
-	return <input type='text' className='form-control mb-2' value={question} />;
+const QuestionField = ({ question, setQuestionValue }) => {
+	return (
+		<input
+			type='text'
+			className='form-control mb-2'
+			onChange={(e) => setQuestionValue(e.target.value)}
+			value={question}
+			placeholder='Question'
+		/>
+	);
 };
 
 export { AddOptions, FieldControls, QuestionField };

@@ -6,14 +6,28 @@ import RenderedForm from './components/Preview/RenderedForm';
 
 const App = () => {
 	const [fields, setFields] = useState([{ id: 0 }]);
+	const [title, setTitle] = useState('');
+	const [desc, setDesc] = useState('');
 	return (
 		<div className='container my-5'>
 			<Header />
 			<Route path='/'>
-				<FormBuilder fields={fields} setFields={setFields} />
+				<FormBuilder
+					fields={fields}
+					setFields={setFields}
+					title={title}
+					setTitle={setTitle}
+					desc={desc}
+					setDesc={setDesc}
+				/>
 			</Route>
 			<Route path='/preview'>
-				<RenderedForm fields={fields} setFields={setFields}/>
+				<RenderedForm
+					fields={fields}
+					setFields={setFields}
+					title={title}
+					desc={desc}
+				/>
 			</Route>
 		</div>
 	);
