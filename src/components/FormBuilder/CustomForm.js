@@ -97,7 +97,7 @@ const CustomForm = ({ fields, setFields }) => {
 				type: type,
 				required: false,
 				options: options,
-				responses: [],
+				response: '',
 			},
 		]);
 	};
