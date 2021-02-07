@@ -1,8 +1,4 @@
-import { useState } from 'react';
-
-const TextRendered = ({ field }) => {
-	const currValue = field.value || '';
-	const [inputValue, setInputValue] = useState(currValue);
+const TextRendered = ({ field, responses, handleResponse }) => {
 	return (
 		<div className='card card-body mt-3'>
 			<h5>{field.question}</h5>
@@ -11,11 +7,11 @@ const TextRendered = ({ field }) => {
 				required={field.required}
 				className='form-control'
 				id={field.id}
-				value={inputValue}
-				onChange={(e) => setInputValue(e.target.value)}
+				value={responses}
+				onChange={(e) => handleResponse(e, field)}
 			/>
 		</div>
 	);
 };
 
-export default TextRendered;
+export { TextRendered };

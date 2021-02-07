@@ -1,37 +1,21 @@
-import { useState, useEffect } from 'react';
-import { FieldControls, QuestionField } from '../Helpers/HelperFunctions';
-
-const TextBuilder = ({ field, remove, duplicate, required, onChangeField }) => {
-	const [questionValue, setQuestionValue] = useState(field.question);
-
-	useEffect(() => {
-		let newFieldValue = {
-			...field,
-			question: questionValue,
-		};
-		onChangeField(newFieldValue);
-	}, [questionValue]);
-
+const TextBuilder = ({ field }) => {
 	return (
-		<div className='card card-body mt-3'>
-			<QuestionField
-				question={questionValue}
-				setQuestionValue={setQuestionValue}
-			/>
-			<input
-				className='form-control'
-				key={field.id}
-				id={field.id}
-				required={field.required}
-			/>
-			<FieldControls
-				id={field.id}
-				remove={remove}
-				duplicate={duplicate}
-				required={required}
-			/>
-		</div>
+		<input className='form-control' id={field.id} required={field.required} />
 	);
 };
 
-export default TextBuilder;
+const ParaBuilder = ({ field }) => {
+	return (
+		<textarea
+			className='form-control'
+			id={field.id}
+			required={field.required}
+		/>
+	);
+};
+
+const DateTimeBuilder = ({ field }) => {
+	return <input type='datetime-local' id={field.id} name={field.id} />;
+};
+
+export { TextBuilder, ParaBuilder, DateTimeBuilder };

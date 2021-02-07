@@ -8,6 +8,9 @@ const App = () => {
 	const [fields, setFields] = useState([{ id: 0 }]);
 	const [title, setTitle] = useState('');
 	const [desc, setDesc] = useState('');
+
+	const [responses, setResponses] = useState([]);
+
 	return (
 		<div className='container my-5'>
 			<Header />
@@ -27,6 +30,8 @@ const App = () => {
 					setFields={setFields}
 					title={title}
 					desc={desc}
+					responses={responses}
+					setResponses={setResponses}
 				/>
 			</Route>
 		</div>
