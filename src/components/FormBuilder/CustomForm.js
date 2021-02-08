@@ -84,9 +84,9 @@ const CustomForm = ({ fields, setFields }) => {
 			type === 'dropdown'
 		) {
 			options = [
-				{ label: 'Option 1' },
-				{ label: 'Option 2' },
-				{ label: 'Option 3' },
+				{ value: 'Option 1', checked: false },
+				{ value: 'Option 2', checked: true },
+				{ value: 'Option 3', checked: false },
 			];
 		}
 		setFields([
@@ -97,7 +97,7 @@ const CustomForm = ({ fields, setFields }) => {
 				type: type,
 				required: false,
 				options: options,
-				response: '',
+				response: null,
 			},
 		]);
 	};

@@ -3,6 +3,7 @@ import {
 	ParaRendered,
 	DateRendered,
 } from './RenderedFields/SingleValuedRendered';
+import { CheckBoxRendered } from './RenderedFields/MultiValuedRendered';
 
 const RenderedForm = ({ fields, setFields, title, desc }) => {
 	const handleInputResponse = (e, field, response) => {
@@ -12,7 +13,6 @@ const RenderedForm = ({ fields, setFields, title, desc }) => {
 			response: response,
 		};
 		stateSetter(updatedField);
-		console.log(field.response);
 	};
 
 	const stateSetter = (updatedField) => {
@@ -21,7 +21,7 @@ const RenderedForm = ({ fields, setFields, title, desc }) => {
 			return field;
 		});
 		setFields(newFields);
-		console.log(newFields);
+		console.log(fields);
 	};
 
 	const renderedFields = fields.map((field) => {
@@ -60,6 +60,9 @@ const RenderedForm = ({ fields, setFields, title, desc }) => {
 				<CheckBoxRendered
 					field={field}
 					key={field.id}
+					stateSetter={(updatedField) => {
+						stateSetter(updatedField);
+					}}
 					handleResponse={(e, field, response) =>
 						handleInputResponse(e, field, response)
 					}

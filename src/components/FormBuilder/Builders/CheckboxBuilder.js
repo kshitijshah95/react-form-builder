@@ -14,15 +14,11 @@ const CheckboxBuilder = ({ field, remove, duplicate, required }) => {
 							type='checkbox'
 							aria-label='Radio button for following text input'
 							value={option.value}
+							checked={option.checked}
 						/>
 					</div>
 				</div>
-				<input
-					type='text'
-					className='form-control'
-					aria-label='Text input with radio button'
-					value={option.value}
-				/>
+				<input type='text' className='form-control' value={option.value} />
 			</div>
 		);
 	});
