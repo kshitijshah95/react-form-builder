@@ -3,11 +3,14 @@ import {
 	ParaRendered,
 	DateRendered,
 } from './RenderedFields/SingleValuedRendered';
-import { CheckBoxRendered } from './RenderedFields/MultiValuedRendered';
+import {
+	CheckBoxRendered,
+	DropdownRendered,
+} from './RenderedFields/MultiValuedRendered';
 
 const RenderedForm = ({ fields, setFields, title, desc }) => {
 	const handleInputResponse = (e, field, response) => {
-		e.preventDefault();
+		// e.preventDefault();
 		let updatedField = {
 			...field,
 			response: response,
@@ -63,6 +66,16 @@ const RenderedForm = ({ fields, setFields, title, desc }) => {
 					stateSetter={(updatedField) => {
 						stateSetter(updatedField);
 					}}
+					handleResponse={(e, field, response) =>
+						handleInputResponse(e, field, response)
+					}
+				/>
+			);
+		else if (field.type === 'dropdown')
+			return (
+				<DropdownRendered
+					field={field}
+					key={field.id}
 					handleResponse={(e, field, response) =>
 						handleInputResponse(e, field, response)
 					}

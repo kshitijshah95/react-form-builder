@@ -1,47 +1,40 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import CheckboxGroup from 'react-checkbox-group';
+import Select from 'react-select';
+
 const CheckBoxRendered = ({ field, handleResponse, stateSetter }) => {
-	
+	const [options, setOptions] = useState([]);
 
-	const onInputChange = (e, oldOption) => {
-		// const updatedOption = { ...oldOption, checked: e.target.checked };
-		// console.log('Updated: ' + updatedOption.checked);
+	useEffect(() => {
+		stateSetter({ ...field, options: options });
+	}, [options]);
 
-		const updatedOptions = field.options.map((option) => {
-			// if (option.value === updatedOption.value) return updatedOption;
-		});
-		const response = {
-			...field,
-			options: updatedOptions,
-		};
-		stateSetter(response);
-		console.log('State: ' + [...field.options]);
-	};
-
-	const renderedOptions = field.options.map((option, i) => {
-		return (
-			<div className='form-check' key={i}>
-				<input
-					className='form-check-input'
-					type='checkbox'
-					value={option.value}
-					id={`checkbox-${i}`}
-					onChange={(e) => onInputChange(e, option)}
-					checked={option.checked}
-					required={field.required}
-				/>
-				<label className='form-check-label' htmlFor={`checkbox-${i}`}>
-					{option.value}
+	const renderedOptions = (Checkbox) =>
+		field.options.map((option) => {
+			return (
+				<label>
+					<Checkbox value={option.value} /> {option.value}
 				</label>
-			</div>
-		);
-	});
+			);
+		});
 
 	return (
-		<div className='card card-body mt-3'>
-			<h5>{field.question}</h5>
-			{renderedOptions}
-		</div>
+		<CheckboxGroup
+			name='checkbox-options'
+			value={options}
+			onChange={setOptions}>
+			{(Checkbox) => renderedOptions(Checkbox)}
+		</CheckboxGroup>
 	);
 };
 
-export { CheckBoxRendered };
+const DropdownRendered = ({ field, handleResponse }) => {
+	const options = field.options;
+	return (
+		<Select options={options} onChange={(e, value) => handleResponse(value)} />
+	);
+};
+
+export { CheckBoxRendered, DropdownRendered };
+// react-select
+// react-dnd

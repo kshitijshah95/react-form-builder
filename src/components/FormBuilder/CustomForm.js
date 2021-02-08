@@ -3,7 +3,7 @@ import {
 	ParaBuilder,
 	DateTimeBuilder,
 } from './Builders/TextBuilder';
-import MultiOptionBuilder from './Builders/DropdownBuilder';
+import MultipleChoiceBuilder from './Builders/MultipleChoiceBuilder';
 import {
 	FieldControls,
 	QuestionField,
@@ -58,7 +58,7 @@ const CustomForm = ({ fields, setFields }) => {
 			return (
 				<div className='card card-body mt-3' key={field.id}>
 					{wrapperHeader}
-					<MultiOptionBuilder
+					<MultipleChoiceBuilder
 						field={field}
 						updateOption={(e, id, index) => updateOption(e, id, index)}
 						deleteOption={(e, field, index) => deleteOption(e, field, index)}
